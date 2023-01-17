@@ -1,15 +1,10 @@
 from tkinter import *
 from tkinter import messagebox
 import sqlite3
-#  this example is to use OOP to organize my code
+
 class Database: 
     
-    
-    
 # to create a table for the database
-#python treat the empty bracket as a function, but init should take a zero arg
-# whereas, with the empty bracket, python will give it an arg, so, 
-# i can pass "self" inside the bracket
     def __init__(self, db):  
         self.conn=sqlite3.connect(db)
         self.cur=self.conn.cursor()
@@ -26,9 +21,7 @@ class Database:
         self.cur.execute("SELECT * FROM book")
         rows=self.cur.fetchall()
         return rows  
-    # the reason for passing an empty string to the func below is so that
-    # when the user passes any of the item, the sql func will execute it and the def function
-    # will return the item passed and the other item as an empty string
+    
     def search(self,title="",author="",year="",isbn=""): 
         self.cur.execute("SELECT * FROM book WHERE title=? OR author=? OR year=? OR isbn=?", (title,author,year,isbn))
         rows=self.cur.fetchall()
@@ -57,11 +50,5 @@ class Database:
     
 
 
-# this is the function that will connect the FE to the BE script 
-# connect()
-# delete(4)   
-# insert("The Shallow End", "Adegboyega Adefolalu", 2022, 54637784567)
-# update(2, "The Earth", "Adefolalu Gboyega", 2021, 546778487)
-# print(view())  
-# print(search(author="Adefolalu Adegboyega"))
+
   
